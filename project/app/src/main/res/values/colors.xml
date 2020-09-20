@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e9c46a</color>
+    <color name="colorPrimaryDark">#f4a261</color>
+    <color name="colorAccent">#2a9d8f</color>
+
+    <color name="colorActionBarText">@android:color/black</color>
+    <color name="navBarColor">@android:color/white</color>
+
+    <color name="darkBackground">#121212</color>
+    <color name="darkForeground">#883a2d49</color>
+
+    <color name="actionBarColor">@color/colorPrimaryDark</color>
+
+    <color name="colorDivider">#77c1c1c1</color>
+
+    <color name="colorButtonDanger">#ae0707</color>
+
+    <color name="iconTintColor">@android:color/black</color>
+
+    <color name="postHeaderBackgroundColor">@color/colorPrimary</color>
+</resources>
