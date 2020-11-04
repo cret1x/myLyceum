@@ -134,14 +134,20 @@ class SourceUpdateActivity : AppCompatActivity() {
             val sources = vkSourcePrefs.getString("sources_vk", "")!!
             val strs = sources.split(",").toTypedArray()
             val source_list = strs.toMutableList()
-            for (source in source_list) {
-                val title = vkSourceDao.getTitleByGid(source.toLong())
-                if (title == null) {
-                    source_list.remove(source)
-                    Log.d("AAAAAAAAAAAAA", source)
+            Log.d("AAAAA", source_list.size.toString())
+            if (source_list.size != 0) {
+                for (source in source_list) {
+                    if (source == "") {
+                        continue
+                    }
+                    val title = vkSourceDao.getTitleByGid(source.toLong())
+                    if (title == null) {
+                        source_list.remove(source)
+                        Log.d("AAAAAAAAAAAAA", source)
+                    }
                 }
+                vkSourcePrefs.edit().putString("sources_vk", source_list.joinToString(",")).apply()
             }
-            vkSourcePrefs.edit().putString("sources_vk", source_list.joinToString(",")).apply()
         }
         Log.d("TO delete", del_id)
         vkSourceDao.deleteById(del_id)
