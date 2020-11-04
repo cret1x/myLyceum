@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e9c46a</color>
+    <color name="colorPrimaryDark">#f4a261</color>
+    <color name="colorAccent">#c55</color>
+    <color name="colorActionBarText">@color/colorPrimaryDark</color>
+    <color name="navBarColor">#1e1e1e</color>
+    <color name="darkBackground">#121212</color>
+    <color name="actionBarColor">#1e1e1e</color>
+    <color name="colorDivider">#33c1c1c1</color>
+    <color name="iconTintColor">@color/colorPrimaryDark</color>
+    <color name="postHeaderBackgroundColor">#1f1f1f</color>
+    <color name="colorTextPost">#ffffff</color>
+    <color name="CardSettingsBackground">#1e1e1e</color>
+</resources>

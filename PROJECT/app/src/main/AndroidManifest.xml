@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.cretix">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+            android:name=".MyApplication"
+            android:allowBackup="false"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity
+                android:name=".UIGuideActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:label="@string/title_activity_u_i_guide"
+                android:theme="@style/FullscreenTheme"></activity>
+        <activity android:name=".MainSettingsActivity" />
+        <activity android:name=".PostViewerActivity" />
+        <activity android:name=".AccountManageActivity" />
+        <activity android:name=".ThemeChangeActivity" />
+        <activity android:name=".SourceUpdateActivity" />
+        <activity
+                android:name=".SourceSelectActivity"
+                android:label="@string/title_activity_source_select"
+                android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".MainScreenActivity" />
+        <activity
+                android:name=".MainActivity"
+                android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name=".MyFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

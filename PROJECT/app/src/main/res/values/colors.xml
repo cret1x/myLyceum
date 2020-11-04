@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Light theme -->
+    <color name="colorPrimary">#e9c46a</color>
+    <color name="colorPrimaryDark">#f4a261</color>
+    <color name="colorAccent">#c55</color>
+    <color name="colorActionBarText">@android:color/black</color>
+    <color name="navBarColor">@android:color/white</color>
+    <color name="buttonTextColor">#000</color>
+    <color name="darkBackground">#121212</color>
+    <color name="actionBarColor">@color/colorPrimaryDark</color>
+    <color name="colorDivider">#77c1c1c1</color>
+    <color name="colorButtonDanger">#ae0707</color>
+    <color name="iconTintColor">@android:color/black</color>
+    <color name="postHeaderBackgroundColor">@color/colorPrimary</color>
+    <color name="CardSettingsBackground">#fbdfc9</color>
+    <color name="colorTextPost">#000000</color>
+    <color name="defaultTextLight">#000</color>
+
+    <color name="black_overlay">#66000000</color>
+</resources>

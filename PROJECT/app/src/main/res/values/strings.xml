@@ -1,0 +1,83 @@
+<resources>
+    <!-- Some auth stuff -->
+    <integer name="com_vk_sdk_AppId">7351459</integer>
+    <string name="facebook_app_id">2527590730887175</string>
+    <string name="fb_login_protocol_scheme">fb2527590730887175</string>
+
+    <!-- Normal strings -->
+    <string name="app_name">myLyceum</string>
+    <string name="title_feed">Лента</string>
+    <string name="title_notifications">Уведомления</string>
+    <string name="title_settings">Настройки</string>
+    <string name="button_auth_continue">Продолжить</string>
+    <string name="action_logout">Выйти</string>
+    <string name="action_login">Войти</string>
+
+    <!-- Login page -->
+    <string name="title_login">Авторизация</string>
+
+
+    <string name="title_source">Выбор источника</string>
+
+    <string name="title_vk">ВКонтакте</string>
+    <string name="title_fb">Facebook</string>
+    <string name="title_twitter">Twitter</string>
+
+    <string name="title_color">Выбор темы</string>
+    <string name="title_account">Управление аккаунами</string>
+    <string name="title_fav">Избранное</string>
+
+
+    <string name="goto_sel_source">Выбор источников</string>
+    <string name="title_activity_source">SourceActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_source_select">SourceSelectActivity</string>
+
+
+    <string name="empty_list">Здесь пока ничего нет</string>
+    <string name="no_sources">Вы еще не выбрали ни одной группы</string>
+    <string name="not_auth">Вы не авторизованы</string>
+    <string name="content_update">Обновление списка источников</string>
+    <string name="content_up_to_date">Список обновлен</string>
+    <string name="feed_update">Обновление ленты</string>
+
+
+    <string name="settings_accounts">Управление аккаунтами</string>
+    <string name="settings_general">Основные</string>
+    <string name="settings_color">Настройка темы</string>
+    <string name="settings_about">О программе</string>
+    <string name="settings_sources">Управление источниками</string>
+
+
+    <string name="theme_light">Светлая тема</string>
+    <string name="theme_dark">Темная тема</string>
+    <string name="theme_system">Системная тема</string>
+
+    <string name="show_more">Показать полностью…</string>
+    <string name="load_more">Загрузить еще</string>
+    <string name="title_post_view">Просмотр записи</string>
+    <string name="add_to_fav">В избранное</string>
+    <string name="del_fav">Убрать из избранного</string>
+    <string name="open_source">Открыть оригинал</string>
+
+    <string name="no_fav">Нет записей в избранном</string>
+    <string name="all_loaded">Загружены все последние новости</string>
+    <string name="error_posts">Не удалось обновить ленту</string>
+
+    <string name="theme_select_label">Выбор оттенка</string>
+
+
+    <string name="app_info">myLyceum\n\nРазработчик: Амирханов Никита\n\nОбратная связь: \ncretixthebest@gmail.com</string>
+
+    <string name="title_activity_u_i_guide">UIGuideActivity</string>
+    <string name="dummy_button">Пропустить</string>
+    <string name="hint_page_1">Для добавления нового источника:\n·перейдите во вкладку настройки\n·нажмите на значок с папкой\n·отметьте нужные сообщества\n·нажмите сохранить</string>
+    <string name="hint_page_2">Для добавления записи в избранное:\n·откройте любую запись\n·нажмите на кнопку "Добавить в избранное"</string>
+    <string name="hint_page_3">Приложение не поддерживает репосты у записей\nДля просмотра таких постов вам будет преложено сразу перейти к источнику</string>
+    <string name="hint_page_4">Для смены темы приложения:\n·перейдите во вкладку настройки\n·нажмите на значок с палитрой\n·выберете нужную тему</string>
+    <string name="next__">Далее</string>
+
+    <string name="enable_hint">Показать подсказки</string>
+    <string name="open_repost">Открыть вложенную запись</string>
+</resources>
