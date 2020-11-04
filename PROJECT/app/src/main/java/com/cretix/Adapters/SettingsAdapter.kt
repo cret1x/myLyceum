@@ -33,7 +33,7 @@ class SettingsAdapter(val ctx: Context, val a: Activity) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val v: View = inflater.inflate(R.layout.item_settings_layout, null)
         v.icon.setImageResource(settingsList[position].icon)
-        //v.title.text = settingsList[position].title
+        v.title.text = settingsList[position].title
         v.setOnClickListener { settingsList[position].action() }
         return v
     }

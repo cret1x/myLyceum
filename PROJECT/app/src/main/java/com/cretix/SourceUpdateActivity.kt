@@ -134,7 +134,6 @@ class SourceUpdateActivity : AppCompatActivity() {
             val sources = vkSourcePrefs.getString("sources_vk", "")!!
             val strs = sources.split(",").toTypedArray()
             val source_list = strs.toMutableList()
-            Log.d("AAAAA", source_list.size.toString())
             if (source_list.size != 0) {
                 for (source in source_list) {
                     if (source == "") {
@@ -143,17 +142,15 @@ class SourceUpdateActivity : AppCompatActivity() {
                     val title = vkSourceDao.getTitleByGid(source.toLong())
                     if (title == null) {
                         source_list.remove(source)
-                        Log.d("AAAAAAAAAAAAA", source)
                     }
                 }
                 vkSourcePrefs.edit().putString("sources_vk", source_list.joinToString(",")).apply()
             }
         }
-        Log.d("TO delete", del_id)
         vkSourceDao.deleteById(del_id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnError { Log.d("AAAAAAAAAAAAA","FFFFFFFFFFFFFFFFFF") }
+            .doOnError {  }
             .doOnComplete {
                 fireDB.collection("groups")
                     .get()

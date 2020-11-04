@@ -14,7 +14,7 @@
     <style name="AppTheme.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:backgroundTint">#1e1e1e</item>
         <item name="strokeWidth">2dp</item>
-        <item name="strokeColor">@color/colorPrimary</item>
+        <item name="strokeColor">#272727</item>
         <item name="radius">25dp</item>
         <item name="android:radius">25dp</item>
         <item name="android:paddingTop">8dp</item>

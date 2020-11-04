@@ -31,6 +31,16 @@
                 android:layout_marginBottom="0dp"
                 android:tint="@color/iconTintColor"
                 app:srcCompat="@drawable/ic_settings_black_outline_24dp" />
+
+        <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="4dp"
+                android:gravity="center|center_horizontal"
+                android:text="@string/settings_general"
+                android:textColor="@color/colorTextPost" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

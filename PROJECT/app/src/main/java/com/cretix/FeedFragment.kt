@@ -98,9 +98,7 @@ class FeedFragment : Fragment() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext { post ->
-                //Log.d("ON_nEXT", "type: " + post.type_.toString())
                 // Если ошибка, то убираем штуку "загрузить еще"
-                //Log.d("On Next", isErrorLoading.toString())
                 if (isErrorLoading) {
                     (recycler.adapter as PostAdapter).removeLast()
                 }

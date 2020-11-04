@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -15,6 +16,7 @@ import io.reactivex.schedulers.Schedulers
 class FavouriteFragment : Fragment() {
     private val roomDB = MyApplication.instance.getDatabase()
     private lateinit var recycler: RecyclerView
+    private lateinit var loadingProgressBar: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,9 +25,11 @@ class FavouriteFragment : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_favourite, container, false)
         recycler = root.findViewById(R.id.recycler)
+        loadingProgressBar = root.findViewById(R.id.update_fav)
         recycler.layoutManager = LinearLayoutManager(activity?.applicationContext)
+        loadingProgressBar.visibility = View.VISIBLE
         recycler.adapter = PostAdapter(requireContext(), requireActivity()).apply {
-            postList = mutableListOf(PostItemInformal(getString(R.string.no_fav)))
+            postList = mutableListOf()
         }
 
         val disposable = roomDB.vkPostDao().getFavourite()
@@ -59,6 +63,7 @@ class FavouriteFragment : Fragment() {
                         postList = mutableListOf(PostItemInformal(getString(R.string.no_fav)))
                     }
                 }
+                loadingProgressBar.visibility =  View.INVISIBLE
             }
             .doOnComplete { }
             .subscribe()
