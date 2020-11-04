@@ -154,6 +154,7 @@ class PostViewerActivity : AppCompatActivity() {
             addon.isEnabled = false
         } else {
             addon.setOnClickListener {
+                Log.d("URL", post.addon)
                 val openURL = Intent(Intent.ACTION_VIEW)
                 openURL.data = Uri.parse(post.addon)
                 startActivity(openURL)

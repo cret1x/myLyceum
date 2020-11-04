@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.cretix.RoomComponents.SourceRoom.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
@@ -58,6 +59,8 @@ class MainScreenActivity : AppCompatActivity() {
         Log.d("MainScreenActivity", "onResume()")
         //selectFragmentById(navSelected)
     }
+
+    override fun onBackPressed() {}
 
     private fun selectFragmentById(id: Int) {
         when (id) {

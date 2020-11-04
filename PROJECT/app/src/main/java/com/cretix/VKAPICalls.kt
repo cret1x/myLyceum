@@ -84,9 +84,6 @@ abstract class VKAPICalls {
                                 ).toString()
                                 val title =
                                     roomDB.vkSourceDao().getTitleByGid(item.getLong("source_id"))
-                                if (title == null) {
-                                    Log.d("AAAAAAAAA", item.getLong("source_id").toString())
-                                }
                                 val iconUrl =
                                     roomDB.vkSourceDao().getIconById(item.getLong("source_id"))
                                 val photos = mutableListOf<String>()
@@ -123,12 +120,10 @@ abstract class VKAPICalls {
                                         }
                                     }
                                 }
-                                Log.d("POST",posts.getJSONObject(i).toString())
                                 if (posts.getJSONObject(i).has("copy_history")) {
                                     val repost = posts.getJSONObject(i).getJSONArray("copy_history")[0] as JSONObject
                                     val link = "https://vk.com/wall" + repost["owner_id"].toString() + "_" + repost["id"]
                                     addon = link
-                                    Log.d("AAAAAAAAAAA", "LLLLLLLLLLLLLLLLLLL")
                                 }
                                 it.onNext(
                                     PostItem(

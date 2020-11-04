@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.google.android.material.snackbar.Snackbar
 import com.vk.sdk.VKAccessToken
 import com.vk.sdk.VKCallback
 import com.vk.sdk.VKScope
@@ -101,7 +102,8 @@ class MainActivity : AppCompatActivity(){
 
     private fun startVkAuth(){
         if(authPrefs.getBoolean("isVKAuth", false)){
-            Toast.makeText(applicationContext, "Вы уже авторизованы через VK", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(applicationContext, "Вы уже авторизованы через VK", Toast.LENGTH_SHORT).show()
+            Snackbar.make(window.decorView.rootView, getString(R.string.vk_auth_ready), Snackbar.LENGTH_SHORT).show()
         }
         else{
             VKSdk.login(this, VKScope.WALL, VKScope.FRIENDS)
@@ -110,33 +112,39 @@ class MainActivity : AppCompatActivity(){
 
     private fun startFacebookAuth(){
         if(authPrefs.getBoolean("isFacebookAuth", true)){
-            Toast.makeText(applicationContext, "Вы уже авторизованы через Facebook", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(applicationContext, "Вы уже авторизованы через Facebook", Toast.LENGTH_SHORT).show()
+            Snackbar.make(window.decorView.rootView, getString(R.string.fb_auth_ready), Snackbar.LENGTH_SHORT).show()
         }
         else{
-            Toast.makeText(applicationContext, "Недоступно", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(applicationContext, "Недоступно", Toast.LENGTH_SHORT).show()
+            Snackbar.make(window.decorView.rootView, getString(R.string.unavailable), Snackbar.LENGTH_SHORT).show()
         }
     }
 
     private fun startTwitterAuth(){
         if(authPrefs.getBoolean("isTwitterAuth", true)){
-            Toast.makeText(applicationContext, "Вы уже авторизованы через Twitter", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(applicationContext, "Вы уже авторизованы через Twitter", Toast.LENGTH_SHORT).show()
+            Snackbar.make(window.decorView.rootView, getString(R.string.tw_auth_ready), Snackbar.LENGTH_SHORT).show()
         }
         else{
-            Toast.makeText(applicationContext, "Недоступно", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(applicationContext, "Недоступно", Toast.LENGTH_SHORT).show()
+            Snackbar.make(window.decorView.rootView, getString(R.string.unavailable), Snackbar.LENGTH_SHORT).show()
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (!VKSdk.onActivityResult(requestCode, resultCode, data, object : VKCallback<VKAccessToken> {
                 override fun onResult(res: VKAccessToken) {
-                    Toast.makeText(applicationContext, "Успешная авторизация", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(applicationContext, "Успешная авторизация", Toast.LENGTH_SHORT).show()
+                    Snackbar.make(window.decorView.rootView, getString(R.string.auth_success), Snackbar.LENGTH_SHORT).show()
                     authPrefs.edit().putBoolean("isVKAuth", true).apply();
                     val buttonStartApp = findViewById<Button>(R.id.btn_auth_ready)
                     buttonStartApp.isEnabled = true
                     buttonStartApp.isClickable = true
                 }
                 override fun onError(error: VKError) {
-                    Toast.makeText(applicationContext, "Ошибка во время авторизации", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(applicationContext, "Ошибка во время авторизации", Toast.LENGTH_SHORT).show()
+                    Snackbar.make(window.decorView.rootView, getString(R.string.auth_error), Snackbar.LENGTH_SHORT).show()
                 }
             })
         ) {

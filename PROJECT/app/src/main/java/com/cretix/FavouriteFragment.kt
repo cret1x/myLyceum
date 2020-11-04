@@ -34,14 +34,12 @@ class FavouriteFragment : Fragment() {
             .doOnNext { list ->
                 (recycler.adapter as PostAdapter).apply { postList = mutableListOf() }
                 for (post in list) {
-                    Log.d("AAAAAAAA", post.id)
                     var photos: List<String>
                     if (post.photos.isEmpty()) {
                         photos = listOf()
                     } else {
                         photos = post.photos.split(",")
                     }
-                    Log.d("AAAAAAAA", "------ 2 ------")
                     (recycler.adapter as PostAdapter).append(
                         PostItem(
                             post.id,
@@ -55,7 +53,6 @@ class FavouriteFragment : Fragment() {
                             post.addons
                         )
                     )
-                    Log.d("AAAAAAAA", "------ 3 ------")
                 }
                 if (list.isEmpty()) {
                     (recycler.adapter as PostAdapter).apply {

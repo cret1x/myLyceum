@@ -80,4 +80,12 @@
 
     <string name="enable_hint">Показать подсказки</string>
     <string name="open_repost">Открыть вложенную запись</string>
+
+    <string name="auth_error">Ошибка во время авторизации</string>
+    <string name="auth_success">Успешная авторизаци</string>
+
+    <string name="unavailable">Недоступно</string>
+    <string name="vk_auth_ready">Вы уже авторизованы через VK</string>
+    <string name="fb_auth_ready">Вы уже авторизованы через Facebook</string>
+    <string name="tw_auth_ready">Вы уже авторизованы через Twitter</string>
 </resources>

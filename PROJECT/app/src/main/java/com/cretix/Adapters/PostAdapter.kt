@@ -62,7 +62,6 @@ class PostAdapter(val ctx: Context, val activity: Activity) : RecyclerView.Adapt
 
     fun removeLast() {
         postList.removeAt(postList.size-1)
-        notifyItemRemoved(postList.size)
     }
 
     override fun getItemViewType(position: Int): Int =
@@ -214,9 +213,16 @@ class PostAdapter(val ctx: Context, val activity: Activity) : RecyclerView.Adapt
                 addon.isEnabled = false
             } else {
                 addon.setOnClickListener {
+                    Log.d("URL", post.addon)
                     val openURL = Intent(Intent.ACTION_VIEW)
                     openURL.data = Uri.parse(post.addon)
-                    ctx.startActivity(openURL)
+                    try {
+                        ctx.startActivity(openURL)
+                    } catch (e: Exception) {
+                        Log.e("URL", "ERROR")
+                        Log.d("URL", post.addon)
+                    }
+
                 }
             }
 
@@ -240,7 +246,7 @@ class PostAdapter(val ctx: Context, val activity: Activity) : RecyclerView.Adapt
                         activity.startActivity(openURL)
                     })
                 )
-                Log.v("LINK: ", name + " -> " + link)
+                //Log.v("LINK: ", name + " -> " + link)
             }
             val formatted_string = regex.replace(post.text) {
                 replaceLinks(it)
@@ -248,7 +254,6 @@ class PostAdapter(val ctx: Context, val activity: Activity) : RecyclerView.Adapt
             val textLength = 240
             val placableText: String
             if (formatted_string.length > textLength) {
-                Log.v("WGFIYUGEF", post.text.length.toString())
                 placableText = formatted_string.substring(0,textLength) + "...\n" + ctx.getString(R.string.show_more)
                 links.add(
                     Pair(ctx.getString(R.string.show_more), View.OnClickListener {
