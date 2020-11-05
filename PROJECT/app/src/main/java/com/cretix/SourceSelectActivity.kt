@@ -3,15 +3,12 @@ package com.cretix
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.cretix.ui.main.SectionsPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.messaging.FirebaseMessaging
-import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 
 

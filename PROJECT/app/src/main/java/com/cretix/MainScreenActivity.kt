@@ -26,39 +26,12 @@ class MainScreenActivity : AppCompatActivity() {
     }
     private var navSelected = R.id.navigation_feed
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("MainScreenActivity", "onDestroy()")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("MainScreenActivity", "onPause()")
-
-    }
-
-
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)
         outState.putInt("navSelected", navSelected)
         Log.d("MainScreenActivity", "onSaveInstanceState()")
     }
 
-    override fun onStop() {
-        super.onStop()
-        Log.d("MainScreenActivity", "onStop()")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d("MainScreenActivity", "onStart()")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("MainScreenActivity", "onResume()")
-        //selectFragmentById(navSelected)
-    }
 
     override fun onBackPressed() {}
 
@@ -85,7 +58,6 @@ class MainScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("MainScreenActivity", "OnCreate()")
         super.onCreate(savedInstanceState)
-       // setTheme(R.style.AppThemeDark)
         setContentView(R.layout.activity_main_screen)
         val last_fragment_id = savedInstanceState?.getInt("navSelected") ?: R.id.navigation_feed
         selectFragmentById(last_fragment_id)

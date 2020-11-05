@@ -29,40 +29,9 @@ class FeedFragment : Fragment() {
     private var feedFirstStart = true
     private lateinit var vkSourcePrefs: SharedPreferences
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d("FeedFragment", "OnCreate()")
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.d("FeedFragment", "onDestroyView()")
         feedFirstStart = false
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("FeedFragment", "onDestroy()")
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        Log.d("FeedFragment", "onDetach()")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d("FeedFragment", "onStart()")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("FeedFragment", "onStop()")
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.d("FeedFragment", "onAttach()")
     }
 
     override fun onCreateView(
@@ -70,7 +39,6 @@ class FeedFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("FeedFragment", "onCreateView()")
         val root = inflater.inflate(R.layout.fragment_feed, container, false)
         vkSourcePrefs = requireContext().getSharedPreferences(VK_SOURCE_PREFS_NAME, Context.MODE_PRIVATE)
         sources = vkSourcePrefs.getString("sources_vk", "")!!
@@ -79,7 +47,7 @@ class FeedFragment : Fragment() {
         recycler.layoutManager = LinearLayoutManager(activity?.applicationContext)
         recycler.adapter = PostAdapter(requireContext(),requireActivity())
         loadingProgressBar.visibility = View.VISIBLE
-        Log.d(TAG, "sources: [$sources]")
+        //Log.d(TAG, "sources: [$sources]")
         if (sources == "") {
             loadingProgressBar.visibility = View.INVISIBLE
             recycler.adapter = PostAdapter(requireContext(),requireActivity()).apply { postList = mutableListOf(PostItemInformal(getString(R.string.no_sources))) }
@@ -142,9 +110,7 @@ class FeedFragment : Fragment() {
                         try {
                             (recycler.adapter as PostAdapter).removeLast()
                             loadMoreVKPosts(false, isErrorLoading)
-                        } catch (e: Exception) {
-                            //Log.e("ERROR", "обибка тут")
-                        }
+                        } catch (e: Exception) { }
 
 
                     })
@@ -152,9 +118,6 @@ class FeedFragment : Fragment() {
             }
             .doOnError {
                 run {
-                //Log.d("ERROR", "ERROR")
-
-                //Toast.makeText(requireContext(),"Невозможно обновить ленту", Toast.LENGTH_LONG).show()
                 Snackbar.make(activity!!.findViewById(android.R.id.content), getString(R.string.error_posts), Snackbar.LENGTH_SHORT).show()
                 recycler.adapter = PostAdapter(requireContext(),requireActivity()).apply { mutableListOf(PostItemInformal(getString(R.string.error_posts))) }
                 isErrorLoading = true

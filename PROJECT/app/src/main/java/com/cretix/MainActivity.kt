@@ -1,14 +1,11 @@
 package com.cretix
 
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.snackbar.Snackbar
@@ -27,39 +24,12 @@ class MainActivity : AppCompatActivity(){
     private lateinit var authPrefs: SharedPreferences
     private var wasFirstLaunch = false
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("MainActivity", "onDestroy()")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("MainActivity", "onPause()")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("MainActivity", "onStop()")
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d("MainActivity", "onStart()")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("MainActivity", "onResume()")
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("MainActivity", "OnCreate()")
         super.onCreate(savedInstanceState)
         settingsPrefs = getSharedPreferences(settingsPreferencesName,Context.MODE_PRIVATE)
         authPrefs = getSharedPreferences(authorizationPreferencesName, Context.MODE_PRIVATE)
 
         setNightMode(settingsPrefs.getString("nightMode", "system")!!)
-        Log.d("NIGHT MODE", settingsPrefs.getString("nightMode", "system")!!)
 
         setContentView(R.layout.activity_main)
 
@@ -98,11 +68,8 @@ class MainActivity : AppCompatActivity(){
 
     }
 
-
-
     private fun startVkAuth(){
         if(authPrefs.getBoolean("isVKAuth", false)){
-            //Toast.makeText(applicationContext, "Вы уже авторизованы через VK", Toast.LENGTH_SHORT).show()
             Snackbar.make(window.decorView.rootView, getString(R.string.vk_auth_ready), Snackbar.LENGTH_SHORT).show()
         }
         else{
@@ -112,22 +79,18 @@ class MainActivity : AppCompatActivity(){
 
     private fun startFacebookAuth(){
         if(authPrefs.getBoolean("isFacebookAuth", true)){
-            //Toast.makeText(applicationContext, "Вы уже авторизованы через Facebook", Toast.LENGTH_SHORT).show()
             Snackbar.make(window.decorView.rootView, getString(R.string.fb_auth_ready), Snackbar.LENGTH_SHORT).show()
         }
         else{
-            //Toast.makeText(applicationContext, "Недоступно", Toast.LENGTH_SHORT).show()
             Snackbar.make(window.decorView.rootView, getString(R.string.unavailable), Snackbar.LENGTH_SHORT).show()
         }
     }
 
     private fun startTwitterAuth(){
         if(authPrefs.getBoolean("isTwitterAuth", true)){
-            //Toast.makeText(applicationContext, "Вы уже авторизованы через Twitter", Toast.LENGTH_SHORT).show()
             Snackbar.make(window.decorView.rootView, getString(R.string.tw_auth_ready), Snackbar.LENGTH_SHORT).show()
         }
         else{
-            //Toast.makeText(applicationContext, "Недоступно", Toast.LENGTH_SHORT).show()
             Snackbar.make(window.decorView.rootView, getString(R.string.unavailable), Snackbar.LENGTH_SHORT).show()
         }
     }
@@ -135,15 +98,14 @@ class MainActivity : AppCompatActivity(){
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (!VKSdk.onActivityResult(requestCode, resultCode, data, object : VKCallback<VKAccessToken> {
                 override fun onResult(res: VKAccessToken) {
-                    //Toast.makeText(applicationContext, "Успешная авторизация", Toast.LENGTH_SHORT).show()
                     Snackbar.make(window.decorView.rootView, getString(R.string.auth_success), Snackbar.LENGTH_SHORT).show()
                     authPrefs.edit().putBoolean("isVKAuth", true).apply();
                     val buttonStartApp = findViewById<Button>(R.id.btn_auth_ready)
                     buttonStartApp.isEnabled = true
                     buttonStartApp.isClickable = true
+                    settingsPrefs.edit().putLong("version", 0).apply()
                 }
                 override fun onError(error: VKError) {
-                    //Toast.makeText(applicationContext, "Ошибка во время авторизации", Toast.LENGTH_SHORT).show()
                     Snackbar.make(window.decorView.rootView, getString(R.string.auth_error), Snackbar.LENGTH_SHORT).show()
                 }
             })
@@ -162,11 +124,10 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun launchApp(){
-        val intent: Intent
-        if (wasFirstLaunch) {
-            intent = Intent(this, UIGuideActivity::class.java)
+        val intent: Intent = if (wasFirstLaunch) {
+            Intent(this, UIGuideActivity::class.java)
         } else {
-            intent = Intent(this, SourceUpdateActivity::class.java)
+            Intent(this, SourceUpdateActivity::class.java)
         }
         startActivity(intent)
         finish()

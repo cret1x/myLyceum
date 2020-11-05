@@ -3,10 +3,8 @@ package com.cretix
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_account_manage.*
 
@@ -41,14 +39,12 @@ class AccountManageActivity : AppCompatActivity() {
             if (authPrefs.getBoolean("isFacebookAuth",false)) {
                 authPrefs.edit().putBoolean("isFacebookAuth", false).apply()
             }
-            //Toast.makeText(applicationContext, "Недоступно", Toast.LENGTH_SHORT).show()
             Snackbar.make(window.decorView.rootView, getString(R.string.unavailable), Snackbar.LENGTH_SHORT).show()
         }
         button_tw.setOnClickListener {
             if (authPrefs.getBoolean("isTwitterAuth",false)) {
                 authPrefs.edit().putBoolean("isTwitterAuth", false).apply()
             }
-            //Toast.makeText(applicationContext, "Недоступно", Toast.LENGTH_SHORT).show()
             Snackbar.make(window.decorView.rootView, getString(R.string.unavailable), Snackbar.LENGTH_SHORT).show()
         }
     }

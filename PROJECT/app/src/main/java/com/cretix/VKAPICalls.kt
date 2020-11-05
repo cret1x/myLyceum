@@ -7,6 +7,7 @@ import io.reactivex.*
 import org.intellij.lang.annotations.Flow
 import org.json.JSONException
 import org.json.JSONObject
+import java.lang.Exception
 import kotlin.concurrent.thread
 
 abstract class VKAPICalls {
@@ -14,6 +15,7 @@ abstract class VKAPICalls {
     class Group(gid: Long) {
 
         private lateinit var obj: JSONObject
+        private val gid = gid
 
         init {
             val request = VKApi.groups().getById(VKParameters.from(
@@ -38,7 +40,34 @@ abstract class VKAPICalls {
         }
 
         fun isClosed() : Boolean {
-            return obj.getInt("is_closed").toBoolean()
+            val is_cls = obj.getInt("is_closed").toBoolean()
+            if (is_cls) {
+                Log.d("AAAAAAAAA", obj.toString())
+                var is_mem: Boolean = false
+                try {
+                    is_mem = obj.getInt("is_member").toBoolean()
+                } catch (e: Exception) {
+                    val request = VKApi.groups().isMember(VKParameters.from(
+                        "group_id", (gid * -1).toString()
+
+                    ))
+                    request.executeSyncWithListener(object: VKRequest.VKRequestListener() {
+                        override fun onComplete(response: VKResponse?) {
+                            super.onComplete(response)
+                            is_mem = response!!.json.getInt("response").toBoolean()
+                        }
+
+                        override fun onError(error: VKError?) {
+                            super.onError(error)
+                            Log.e(TAG, error.toString())
+                        }
+                    })
+                }
+
+                return !is_mem
+            }
+
+            return is_cls
         }
 
     }
