@@ -61,6 +61,8 @@
     <string name="del_fav">Убрать из избранного</string>
     <string name="open_source">Открыть оригинал</string>
 
+    <string name="changes_saved">Изменения сохранены</string>
+
     <string name="no_fav">Нет записей в избранном</string>
     <string name="all_loaded">Загружены все последние новости</string>
     <string name="error_posts">Не удалось обновить ленту</string>
@@ -76,6 +78,7 @@
     <string name="hint_page_2">Для добавления записи в избранное:\n·откройте любую запись\n·нажмите на кнопку "Добавить в избранное"</string>
     <string name="hint_page_3">Приложение не поддерживает репосты у записей:\nДля просмотра таких постов вам будет преложено сразу перейти к источнику</string>
     <string name="hint_page_4">Для смены темы приложения:\n·перейдите во вкладку настройки\n·нажмите на значок с палитрой\n·выберите нужную тему</string>
+    <string name="hint_page_5">Показать подсказки можно в настройках в пункте "Основные"</string>
     <string name="next__">Далее</string>
 
     <string name="enable_hint">Показать подсказки</string>

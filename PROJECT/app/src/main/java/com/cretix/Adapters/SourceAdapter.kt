@@ -1,24 +1,28 @@
 package com.cretix
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
 import android.content.res.ColorStateList
-import android.util.Log
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_post_informal.view.*
 import kotlinx.android.synthetic.main.item_source_layout.view.*
 import kotlin.concurrent.thread
 
+
 // id - fireBase id
-data class SourceItem(val id: String, val title: String, val available: Boolean, var checked: Boolean, var isNotifications: Boolean, var icon: String)
+data class SourceItem(val id: String, val title: String, val available: Boolean, var checked: Boolean, var isNotifications: Boolean, var icon: String, var gid: Long)
 
 class SourceAdapter(val ctx: Context, val activity: Activity) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val roomDB = MyApplication.instance.getDatabase()
@@ -73,6 +77,18 @@ class SourceAdapter(val ctx: Context, val activity: Activity) : RecyclerView.Ada
         }
     }
 
+    class ClosedDialogFragment(private val link: String) : DialogFragment() {
+        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+            val builder: AlertDialog.Builder = AlertDialog.Builder(activity)
+            builder.setMessage("Закрытая группа! \nВспупите в сообщество \n$link для просмотра содержимого")
+                .setPositiveButton(getString(android.R.string.ok)
+                ) { dialog, id ->
+
+                }
+            return builder.create()
+        }
+    }
+
     inner class SourceViewHolder(root: View) : RecyclerView.ViewHolder(root) {
         private val view = root
         private val title = view.source_title
@@ -93,7 +109,9 @@ class SourceAdapter(val ctx: Context, val activity: Activity) : RecyclerView.Ada
                 ImageViewCompat.setImageTintList(notificationEnable, ColorStateList.valueOf(ContextCompat.getColor(ctx, android.R.color.darker_gray)));
 
                 view.setOnClickListener {
-                    Toast.makeText(ctx,"Закрытая группа", Toast.LENGTH_SHORT).show()
+                    val i = ClosedDialogFragment(source.title)
+                    i.show((ctx as AppCompatActivity).supportFragmentManager, "a")
+                    //Snackbar.make(activity.findViewById(android.R.id.content), "Закрытая группа", Snackbar.LENGTH_SHORT).show()
                 }
             }
             title.text = source.title

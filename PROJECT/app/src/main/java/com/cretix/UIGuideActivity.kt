@@ -76,6 +76,9 @@ class UIGuideActivity : AppCompatActivity() {
             }
             else if (step == 3) {
                 fullscreen_content.text = getText(R.string.hint_page_4)
+            }
+            else if (step == 4) {
+                fullscreen_content.text = getText(R.string.hint_page_5)
                 btn_next.visibility = View.GONE
                 btn_next.isEnabled = false
                 btn_next.isClickable = false

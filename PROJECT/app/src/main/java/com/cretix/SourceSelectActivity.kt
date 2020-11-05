@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.cretix.ui.main.SectionsPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.messaging.FirebaseMessaging
 import io.reactivex.Flowable
@@ -31,7 +32,6 @@ class SourceSelectActivity : AppCompatActivity() {
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
         val fab: FloatingActionButton = findViewById(R.id.fab)
-
         fab.setOnClickListener {
             val disposable = roomDB.vkSourceDao().getSelected()
                 .observeOn(AndroidSchedulers.mainThread())
@@ -59,7 +59,9 @@ class SourceSelectActivity : AppCompatActivity() {
                                     for (id in list_) {
                                         FirebaseMessaging.getInstance().unsubscribeFromTopic(id.toString())
                                     }
-                                    kotlin.run { finish() }
+                                    run {
+                                        finish()
+                                    }
                                 }
                                 .doOnError { it.printStackTrace() }
                                 .subscribe()

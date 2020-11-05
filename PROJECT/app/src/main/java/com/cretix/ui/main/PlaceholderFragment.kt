@@ -44,8 +44,8 @@ class PlaceholderFragment : Fragment() {
         var type = arguments?.getInt(ARG_SECTION_NUMBER) ?: 0
         type--
 
-        val emptySource = SourceItem("empty","",false,false, false, "")
-        val authSource = SourceItem("no_auth","",false,false, false, "")
+        val emptySource = SourceItem("empty","",false,false, false, "", 0)
+        val authSource = SourceItem("no_auth","",false,false, false, "" , 0)
 
 
         when (type) {
@@ -65,7 +65,7 @@ class PlaceholderFragment : Fragment() {
                                         items.add(createVKSourceItem(source))
                                     }
                                 }
-
+                                items.sortBy { it -> it.title }
                                 (recycler.adapter as SourceAdapter).apply {
                                     sourceList = items
                                     innerType = 0
@@ -104,6 +104,6 @@ class PlaceholderFragment : Fragment() {
     }
 
     private fun createVKSourceItem(src: VKSourceEntity) : SourceItem {
-        return SourceItem(src.id, src.title, !src.isClosed, src.isSelected, src.isNotify, src.groupIcon)
+        return SourceItem(src.id, src.title, !src.isClosed, src.isSelected, src.isNotify, src.groupIcon, src.gid * -1)
     }
 }
